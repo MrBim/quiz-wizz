@@ -18,7 +18,6 @@ function App() {
         <QuizSettings
           setShowQuizSettings={setShowQuizSettings}
           setQuizSettings={setQuizSettings}
-          quizSettings={quizSettings}
         />
       ) : null}
       {!showQuizSettings ? <Quiz quizSettings={quizSettings} setShowQuizSettings={setShowQuizSettings} /> : null}

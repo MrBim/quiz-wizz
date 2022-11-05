@@ -7,13 +7,11 @@ import Styles from "./QuizSettings.module.css";
 type Props = {
   setShowQuizSettings: Dispatch<SetStateAction<boolean>>;
   setQuizSettings: Dispatch<SetStateAction<QuizSettingsObject>>;
-  quizSettings: QuizSettingsObject;
 };
 
 const QuizSettings = ({
   setShowQuizSettings,
   setQuizSettings,
-  quizSettings,
 }: Props) => {
   const [numQuestions, setNumQuestions] = useState("10");
   const [quizCat, setQuizCat] = useState({ label: "", value: "" });
@@ -36,8 +34,8 @@ const QuizSettings = ({
   return (
     <div className={Styles.main}>
       <h1 className={Styles.title}>Create your quiz</h1>
-      {/* select num of questions */}
-      <h2>What is the maximum number of questions you would like?</h2>
+      <h2>how many Questions?</h2>
+      <p>(you may get less questions than you ask for if there are not enough available questions for your requested subject )</p>
       <select
         className={Styles.subjectSelect}
         value={numQuestions}
