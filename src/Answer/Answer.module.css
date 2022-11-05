@@ -1,7 +1,13 @@
 .main{
-    width: 40%;
+    width: 80%;
     border: 1px solid black;
-    margin: 2%;
+    margin: 2% auto;
     padding: 20px;
     cursor: pointer;
+    
+}
+@media (min-width: 768px) {
+    .main{
+        width: 40%;
+    }
 }

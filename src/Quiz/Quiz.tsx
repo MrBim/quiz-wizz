@@ -56,7 +56,7 @@ const Quiz = ({ quizSettings, setShowQuizSettings }: Props) => {
   if (error) return <h1>everything is wrong and bad</h1>;
   return (
     <div className={Styles.main}>
-      <h1 className={Styles.titleText}>this is the Quiz</h1>
+      <h1 className={Styles.titleText}>A Quiz about {quizSettings.cat}</h1>
 
       {!showEndScreen ? (
         <>

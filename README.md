@@ -1,3 +1,11 @@
+A simple quiz genorator made with react.
+
+gh pages deploy [here](https://mrbim.github.io/quiz-wizz/)
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
