@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { QueryClientProvider, QueryClient } from "react-query";
 import Quiz from "./Quiz/Quiz";
 import QuizSettings from "./QuizSettings/QuizSettings";
+import "./App.css";
 
 const queryClient = new QueryClient();
 
@@ -12,6 +13,7 @@ function App() {
     numQuestions: "10",
   });
   return (
+    
     <QueryClientProvider client={queryClient}>
       {showQuizSettings ? (
         <QuizSettings
