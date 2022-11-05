@@ -58,7 +58,7 @@ const QuizSettings = ({
         onChange={(e) => setQuizCat(e ? e : { label: "", value: "" })}
       />
       {/* select tag for quiz subject */}
-      <button onClick={handleStartQuiz}>Play Your Quiz!</button>
+      <button onClick={handleStartQuiz} disabled={!quizCat.label}>Play Your Quiz!</button>
     </div>
   );
 };

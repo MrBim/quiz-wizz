@@ -12,7 +12,12 @@ const Quiz = ({ quizSettings, setShowQuizSettings }: Props) => {
   const [questionNum, setQuestionNum] = useState(0);
   const [score, setScore] = useState(0);
   const [showEndScreen, setShowEndScreen] = useState(false);
-
+  const resetQuiz = () => {
+    setQuestionNum(0)
+    setScore(0)
+    setShowEndScreen(false)
+    setShowQuizSettings(true)
+  }
   const { data, error } = useQuery(["quiz", quizSettings.cat], () =>
     getQuiz(quizSettings)
   );
@@ -52,7 +57,10 @@ const Quiz = ({ quizSettings, setShowQuizSettings }: Props) => {
     <div>
       <h1>this is the Quiz</h1>
       {formattedQuestions && formattedQuestions.length && showEndScreen ? (
-        <div>you have scored {`${score}/${formattedQuestions.length}`}</div>
+        <>
+          <div>you have scored {`${score}/${formattedQuestions.length}`}</div>
+          <button onClick={resetQuiz}>take another quiz</button>
+        </>
       ) : null}
       {!showEndScreen ? (
         <>
