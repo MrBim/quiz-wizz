@@ -1,7 +1,8 @@
 import React from "react";
+import Styles from "./Answer.module.css";
 
 type Props = {
-  answerObj: question;
+  answerObj: answer;
   handleAnswer: (isCorrectAnswer: boolean) => void;
 };
 
@@ -10,7 +11,7 @@ const Answer = ({ answerObj, handleAnswer}: Props) => {
   const handleAnswerClick = () => {
     handleAnswer(isCorrect);
   };
-  return <div onClick={handleAnswerClick}>{answer}</div>;
+  return <div className={Styles.main} onClick={handleAnswerClick}>{answer}</div>;
 };
 
 export default Answer;

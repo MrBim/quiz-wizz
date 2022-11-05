@@ -3,6 +3,7 @@ import { getQuiz } from "../scripts/networkFunctions";
 import { useQuery } from "react-query";
 import { shuffle } from "../scripts/shuffle";
 import Answer from "../Answer/Answer";
+import Styles from "./Quiz.module.css";
 
 type Props = {
   quizSettings: QuizSettingsObject;
@@ -13,11 +14,11 @@ const Quiz = ({ quizSettings, setShowQuizSettings }: Props) => {
   const [score, setScore] = useState(0);
   const [showEndScreen, setShowEndScreen] = useState(false);
   const resetQuiz = () => {
-    setQuestionNum(0)
-    setScore(0)
-    setShowEndScreen(false)
-    setShowQuizSettings(true)
-  }
+    setQuestionNum(0);
+    setScore(0);
+    setShowEndScreen(false);
+    setShowQuizSettings(true);
+  };
   const { data, error } = useQuery(["quiz", quizSettings.cat], () =>
     getQuiz(quizSettings)
   );
@@ -54,29 +55,33 @@ const Quiz = ({ quizSettings, setShowQuizSettings }: Props) => {
   };
   if (error) return <h1>everything is wrong and bad</h1>;
   return (
-    <div>
-      <h1>this is the Quiz</h1>
+    <div className={Styles.main}>
+      <h1 className={Styles.titleText}>this is the Quiz</h1>
+
+      {!showEndScreen ? (
+        <>
+          <div className={Styles.questionText}>
+            question {questionNum + 1}/{formattedQuestions.length}:{" "}
+            {formattedQuestions[questionNum].question}
+          </div>
+          <div className={Styles.answerArea}>
+            {formattedQuestions && formattedQuestions.length
+              ? formattedQuestions[questionNum].answers.map((it: answer) => (
+                  <Answer
+                    key={it.answer}
+                    answerObj={it}
+                    handleAnswer={handleAnswer}
+                  />
+                ))
+              : null}
+          </div>
+        </>
+      ) : null}
+
       {formattedQuestions && formattedQuestions.length && showEndScreen ? (
         <>
           <div>you have scored {`${score}/${formattedQuestions.length}`}</div>
           <button onClick={resetQuiz}>take another quiz</button>
-        </>
-      ) : null}
-      {!showEndScreen ? (
-        <>
-          <div>
-            question {questionNum + 1}/{formattedQuestions.length}:{" "}
-            {formattedQuestions[questionNum].question}
-          </div>
-          {formattedQuestions && formattedQuestions.length
-            ? formattedQuestions[questionNum].answers.map((it: question) => (
-                <Answer
-                  key={it.answer}
-                  answerObj={it}
-                  handleAnswer={handleAnswer}
-                />
-              ))
-            : null}
         </>
       ) : null}
     </div>

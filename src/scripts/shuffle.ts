@@ -1,4 +1,4 @@
-export const shuffle = (array: QuestionSet) => {
+export const shuffle = (array: answerSet) => {
   const arrayCopy = [...array]
   for (let i = arrayCopy.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));

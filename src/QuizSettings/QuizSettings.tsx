@@ -2,6 +2,8 @@ import React, { Dispatch, SetStateAction, useMemo, useState } from "react";
 import { useQuery } from "react-query";
 import Select from "react-select";
 import { getCategories } from "../scripts/networkFunctions";
+import Styles from "./QuizSettings.module.css";
+
 type Props = {
   setShowQuizSettings: Dispatch<SetStateAction<boolean>>;
   setQuizSettings: Dispatch<SetStateAction<QuizSettingsObject>>;
@@ -24,7 +26,7 @@ const QuizSettings = ({
   };
 
   const { data, error } = useQuery("categories", getCategories);
-  
+
   const allCats = useMemo(() => {
     if (!data) return [];
     return data.map((it: string) => ({ value: it, label: it }));
@@ -32,11 +34,12 @@ const QuizSettings = ({
 
   if (error) return <h1>everything is wrong and bad</h1>;
   return (
-    <div>
-      <h1>choose your quiz</h1>
+    <div className={Styles.main}>
+      <h1 className={Styles.title}>Create your quiz</h1>
       {/* select num of questions */}
-      <h2>How many Questions?</h2>
+      <h2>What is the maximum number of questions you would like?</h2>
       <select
+        className={Styles.subjectSelect}
         value={numQuestions}
         onChange={(e) => {
           setNumQuestions(e.target.value);
@@ -52,13 +55,16 @@ const QuizSettings = ({
       </select>
       <h2>What Subject?</h2>
       <Select
+        className={Styles.subjectSelect}
         value={quizCat}
         name="Category"
         options={allCats}
         onChange={(e) => setQuizCat(e ? e : { label: "", value: "" })}
       />
       {/* select tag for quiz subject */}
-      <button onClick={handleStartQuiz} disabled={!quizCat.label}>Play Your Quiz!</button>
+      <button onClick={handleStartQuiz} disabled={!quizCat.label}>
+        Take Your Quiz!
+      </button>
     </div>
   );
 };

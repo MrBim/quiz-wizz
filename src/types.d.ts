@@ -3,10 +3,10 @@ type QuizSettingsObject = {
     numQuestions: string;
 } 
 
-type question = {
+type answer = {
     answer:string;
     isCorrect: boolean;
     num: number;
 }
 
-type QuestionSet = question[]
+type answerSet = answerSet[]

@@ -1,0 +1,18 @@
+.main {
+    width: 100%;
+    text-align: center;
+}
+
+.titleText {
+    text-decoration: underline;
+}
+
+.answerArea{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.questionText {
+    max-width: 80%;
+    margin: 0 auto;
+}

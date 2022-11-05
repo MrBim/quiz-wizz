@@ -1,0 +1,11 @@
+.main {
+    width: 100%;
+    text-align: center;
+}
+.title{
+    mask-border: 40px;
+    text-decoration: underline;
+}
+.subjectSelect{
+    margin-bottom: 60px;
+}
