@@ -13,7 +13,6 @@ function App() {
     numQuestions: "10",
   });
   return (
-    
     <QueryClientProvider client={queryClient}>
       {showQuizSettings ? (
         <QuizSettings

@@ -26,20 +26,21 @@ const Quiz = ({ quizSettings, setShowQuizSettings }: Props) => {
   const formattedQuestions = useMemo(() => {
     if (!data)
       return [{ question: "there are", answers: [" no formattedQuestions,"] }];
-    const munge = data.map((it: any) => {
-      const answers = it.incorrectAnswers.map((it: unknown, i: number) => ({
+    const munge = data.map((it: QuizApiData) => {
+      const wrongAnswers = it.incorrectAnswers.map((it, i) => ({
         answer: it,
         isCorrect: false,
         num: i,
       }));
-      const correctAnswer = {
+      const correctAnswer: answer = {
         answer: it.correctAnswer,
         isCorrect: true,
-        num: answers.length,
+        num: wrongAnswers.length,
       };
+      const answers = shuffle([...wrongAnswers, correctAnswer]);
       return {
         question: it.question,
-        answers: shuffle([...answers, correctAnswer]),
+        answers
       };
     });
     return munge;
