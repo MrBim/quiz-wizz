@@ -40,7 +40,7 @@ const Quiz = ({ quizSettings, setShowQuizSettings }: Props) => {
       const answers = shuffle([...wrongAnswers, correctAnswer]);
       return {
         question: it.question,
-        answers
+        answers,
       };
     });
     return munge;
@@ -61,6 +61,7 @@ const Quiz = ({ quizSettings, setShowQuizSettings }: Props) => {
 
       {!showEndScreen ? (
         <>
+          
           <div className={Styles.questionText}>
             question {questionNum + 1}/{formattedQuestions.length}:{" "}
             {formattedQuestions[questionNum].question}
@@ -85,6 +86,17 @@ const Quiz = ({ quizSettings, setShowQuizSettings }: Props) => {
           <button onClick={resetQuiz}>take another quiz</button>
         </>
       ) : null}
+      {!showEndScreen && formattedQuestions && formattedQuestions.length && (formattedQuestions.length < parseInt(quizSettings.numQuestions)) ? (
+            <>
+              <div>
+               ( there are only {formattedQuestions.length} questions about {quizSettings.cat}
+              </div>
+              <div>
+                you can always try a different quiz if this makes you sad )
+              </div>
+              <button onClick={resetQuiz}>create a different quiz</button>
+            </>
+          ) : null}
     </div>
   );
 };
